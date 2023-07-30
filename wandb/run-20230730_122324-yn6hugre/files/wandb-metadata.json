@@ -1,0 +1,344 @@
+{
+    "os": "Linux-5.13.0-35-generic-x86_64-with-glibc2.31",
+    "python": "3.11.4",
+    "heartbeatAt": "2023-07-30T04:23:25.646184",
+    "startedAt": "2023-07-30T04:23:24.960737",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "--local_rank=0",
+        "--ddp_timeout=360000",
+        "--output_dir",
+        "./saved/flacuna/",
+        "--deepspeed",
+        "deepspeed_configs/fp16_ft_7b.json",
+        "--fp16",
+        "True",
+        "--model_name_or_path",
+        "lmsys/vicuna-7b-v1.3",
+        "--data_path",
+        "data/data_hall_sgpt_combined.json",
+        "--per_device_train_batch_size",
+        "2",
+        "--per_device_eval_batch_size",
+        "4",
+        "--gradient_accumulation_steps",
+        "8",
+        "--num_train_epochs",
+        "3",
+        "--evaluation_strategy",
+        "epoch",
+        "--save_strategy",
+        "steps",
+        "--save_steps",
+        "1",
+        "--save_total_limit",
+        "20",
+        "--learning_rate",
+        "2e-5",
+        "--weight_decay",
+        "0.",
+        "--warmup_ratio",
+        "0.0001",
+        "--lr_scheduler_type",
+        "cosine",
+        "--logging_steps",
+        "10",
+        "--model_max_length",
+        "1280",
+        "--gradient_checkpointing",
+        "True",
+        "--lazy_preprocess",
+        "True",
+        "--disable_tqdm",
+        "False"
+    ],
+    "state": "running",
+    "program": "/home/rishabh/LLM_HHH/CORAL/fastchat/train/train_ft.py",
+    "codePath": "fastchat/train/train_ft.py",
+    "git": {
+        "remote": "https://github.com/Bhardwaj-Rishabh/CORAL.git",
+        "commit": "b5aa2b6b7dfae0eb3df5650ad2e608eb8ce9cb2f"
+    },
+    "email": "rishabhbhardwaj15@gmail.com",
+    "root": "/home/rishabh/LLM_HHH/CORAL",
+    "host": "workstation",
+    "username": "rishabh",
+    "executable": "/home/rishabh/miniconda3/envs/LLMFT/bin/python",
+    "cpu_count": 24,
+    "cpu_count_logical": 48,
+    "cpu_freq": {
+        "current": 4024.270958333334,
+        "min": 2200.0,
+        "max": 3800.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 4153.897,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 4135.799,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 4161.772,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 4157.837,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 4158.301,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3328.68,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        },
+        {
+            "current": 3800.0,
+            "min": 2200.0,
+            "max": 3800.0
+        }
+    ],
+    "disk": {
+        "total": 848.7079582214355,
+        "used": 686.5493698120117
+    },
+    "gpu": "NVIDIA RTX A6000",
+    "gpu_count": 4,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA RTX A6000",
+            "memory_total": 48305799168
+        },
+        {
+            "name": "NVIDIA RTX A6000",
+            "memory_total": 48305799168
+        },
+        {
+            "name": "NVIDIA RTX A6000",
+            "memory_total": 48305799168
+        },
+        {
+            "name": "NVIDIA RTX A6000",
+            "memory_total": 48305799168
+        }
+    ],
+    "memory": {
+        "total": 251.5547866821289
+    }
+}
