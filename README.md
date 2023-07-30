@@ -30,6 +30,9 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 deepspeed --num_gpus=4 fastchat/train/train_ft.py \
     --gradient_checkpointing True --lazy_preprocess True --disable_tqdm False
 ```
 
+### Download data
+gsutil cp gs://hhh_aaai/data_hall_sgpt_combined.json data/
+
 ### Main run (13B)
 _If checkpoint shards are being saved, please run the main code_
 ```
