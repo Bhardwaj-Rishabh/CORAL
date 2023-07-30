@@ -1,3 +1,4 @@
+# Installation
 conda create --name LLMFT -c conda-forge python=3.11
 
 conda activate LLMFT
@@ -12,6 +13,7 @@ pip install deepspeed
 
 pip install scikit-learn
 
+### Dry run (testing on 7B saving at 1 step)
 _Before running above, please try saving checkpoint with 7B and 1 step_
 ```
 CUDA_VISIBLE_DEVICES=0,1,2,3 deepspeed --num_gpus=4 fastchat/train/train_ft.py \
@@ -28,6 +30,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 deepspeed --num_gpus=4 fastchat/train/train_ft.py \
     --gradient_checkpointing True --lazy_preprocess True --disable_tqdm False
 ```
 
+### Main run (13B)
 _If checkpoint shards are being saved, please run the main code_
 ```
 CUDA_VISIBLE_DEVICES=0,1,2,3 deepspeed --num_gpus=4 fastchat/train/train_ft.py \
