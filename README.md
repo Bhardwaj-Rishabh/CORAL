@@ -22,7 +22,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 deepspeed --num_gpus=4 fastchat/train/train_ft.py \
     --deepspeed "deepspeed_configs/fp16_ft_13b.json" --fp16 True \
     --model_name_or_path "lmsys/vicuna-7b-v1.3" \
     --data_path "data/data_hall_sgpt.json" \
-    --per_device_train_batch_size 4 --per_device_eval_batch_size 4 --gradient_accumulation_steps 8 \
+    --per_device_train_batch_size 2 --per_device_eval_batch_size 4 --gradient_accumulation_steps 8 \
     --num_train_epochs 3 --evaluation_strategy "epoch" \
     --save_strategy "steps" --save_steps 1 --save_total_limit 20 \
     --learning_rate 2e-5 --weight_decay 0. --warmup_ratio 0.0001 --lr_scheduler_type "cosine" --logging_steps 10 \
@@ -39,7 +39,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 deepspeed --num_gpus=4 fastchat/train/train_ft.py \
     --deepspeed "deepspeed_configs/fp16_ft_13b.json" --fp16 True \
     --model_name_or_path "lmsys/vicuna-13b-v1.3" \
     --data_path "data/data_hall_sgpt.json" \
-    --per_device_train_batch_size 4 --per_device_eval_batch_size 4 --gradient_accumulation_steps 8 \
+    --per_device_train_batch_size 2 --per_device_eval_batch_size 4 --gradient_accumulation_steps 8 \
     --num_train_epochs 3 --evaluation_strategy "epoch" \
     --save_strategy "steps" --save_steps 100 --save_total_limit 20 \
     --learning_rate 2e-5 --weight_decay 0. --warmup_ratio 0.0001 --lr_scheduler_type "cosine" --logging_steps 10 \
