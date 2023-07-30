@@ -13,6 +13,9 @@ pip install deepspeed
 
 pip install scikit-learn
 
+### Download data
+gsutil cp gs://hhh_aaai/data_hall_sgpt_combined.json data/
+
 ### Dry run (testing on 7B saving at 1 step)
 _Before running above, please try saving checkpoint with 7B and 1 step_
 ```
@@ -29,9 +32,6 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 deepspeed --num_gpus=4 fastchat/train/train_ft.py \
     --model_max_length 1280 \
     --gradient_checkpointing True --lazy_preprocess True --disable_tqdm False
 ```
-
-### Download data
-gsutil cp gs://hhh_aaai/data_hall_sgpt_combined.json data/
 
 ### Main run (13B)
 _If checkpoint shards are being saved, please run the main code_
