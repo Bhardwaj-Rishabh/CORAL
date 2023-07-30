@@ -17,7 +17,7 @@ pip install scikit-learn
 gsutil cp gs://hhh_aaai/data_hall_sgpt_combined.json data/
 
 ### Dry run (testing on 7B saving at 1 step)
-_Before running above, please try saving checkpoint with 7B and 1 step_
+_Before running 13B, please try saving checkpoint with 7B and 1 step_
 ```
 CUDA_VISIBLE_DEVICES=0,1,2,3 deepspeed --num_gpus=4 fastchat/train/train_ft.py \
     --ddp_timeout=360000 \
