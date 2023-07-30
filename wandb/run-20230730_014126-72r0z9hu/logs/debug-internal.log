@@ -1,0 +1,135 @@
+2023-07-30 01:41:26,429 INFO    StreamThr :2255077 [internal.py:wandb_internal():86] W&B internal server running at pid: 2255077, started at: 2023-07-30 01:41:26.429028
+2023-07-30 01:41:26,430 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status
+2023-07-30 01:41:26,573 INFO    WriterThread:2255077 [datastore.py:open_for_write():85] open: /home/rishabh/LLM_HHH/FastChat/wandb/run-20230730_014126-72r0z9hu/run-72r0z9hu.wandb
+2023-07-30 01:41:26,574 DEBUG   SenderThread:2255077 [sender.py:send():379] send: header
+2023-07-30 01:41:26,581 DEBUG   SenderThread:2255077 [sender.py:send():379] send: run
+2023-07-30 01:41:27,148 INFO    SenderThread:2255077 [dir_watcher.py:__init__():211] watching files in: /home/rishabh/LLM_HHH/FastChat/wandb/run-20230730_014126-72r0z9hu/files
+2023-07-30 01:41:27,148 INFO    SenderThread:2255077 [sender.py:_start_run_threads():1122] run started: 72r0z9hu with start time 1690652486.440501
+2023-07-30 01:41:27,154 DEBUG   SenderThread:2255077 [sender.py:send_request():406] send_request: summary_record
+2023-07-30 01:41:27,154 INFO    SenderThread:2255077 [sender.py:_save_file():1376] saving file wandb-summary.json with policy end
+2023-07-30 01:41:27,174 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: check_version
+2023-07-30 01:41:27,174 DEBUG   SenderThread:2255077 [sender.py:send_request():406] send_request: check_version
+2023-07-30 01:41:27,241 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: run_start
+2023-07-30 01:41:27,248 DEBUG   HandlerThread:2255077 [system_info.py:__init__():31] System info init
+2023-07-30 01:41:27,248 DEBUG   HandlerThread:2255077 [system_info.py:__init__():46] System info init done
+2023-07-30 01:41:27,248 INFO    HandlerThread:2255077 [system_monitor.py:start():181] Starting system monitor
+2023-07-30 01:41:27,248 INFO    SystemMonitor:2255077 [system_monitor.py:_start():145] Starting system asset monitoring threads
+2023-07-30 01:41:27,249 INFO    HandlerThread:2255077 [system_monitor.py:probe():201] Collecting system info
+2023-07-30 01:41:27,249 INFO    SystemMonitor:2255077 [interfaces.py:start():190] Started cpu monitoring
+2023-07-30 01:41:27,250 INFO    SystemMonitor:2255077 [interfaces.py:start():190] Started disk monitoring
+2023-07-30 01:41:27,251 INFO    SystemMonitor:2255077 [interfaces.py:start():190] Started gpu monitoring
+2023-07-30 01:41:27,251 INFO    SystemMonitor:2255077 [interfaces.py:start():190] Started memory monitoring
+2023-07-30 01:41:27,252 INFO    SystemMonitor:2255077 [interfaces.py:start():190] Started network monitoring
+2023-07-30 01:41:27,301 DEBUG   HandlerThread:2255077 [system_info.py:probe():195] Probing system
+2023-07-30 01:41:27,303 DEBUG   HandlerThread:2255077 [gitlib.py:_init_repo():53] git repository is invalid
+2023-07-30 01:41:27,303 DEBUG   HandlerThread:2255077 [system_info.py:probe():240] Probing system done
+2023-07-30 01:41:27,303 DEBUG   HandlerThread:2255077 [system_monitor.py:probe():210] {'os': 'Linux-5.13.0-35-generic-x86_64-with-glibc2.31', 'python': '3.11.4', 'heartbeatAt': '2023-07-29T17:41:27.301790', 'startedAt': '2023-07-29T17:41:26.387492', 'docker': None, 'cuda': None, 'args': ('--local_rank=0', '--ddp_timeout=360000', '--output_dir', '/data/rishabh/flacuna/', '--deepspeed', 'deepspeed_configs/fp16_ft_7b.json', '--fp16', 'True', '--model_name_or_path', '/data/rishabh/flacuna/pos_neg_v4_checkpoint-200', '--data_path', 'data/data_hall_sgpt_combined.json', '--per_device_train_batch_size', '4', '--per_device_eval_batch_size', '4', '--gradient_accumulation_steps', '8', '--num_train_epochs', '3', '--evaluation_strategy', 'steps', '--eval_steps', '20', '--save_strategy', 'steps', '--save_steps', '200', '--save_total_limit', '20', '--learning_rate', '1e-5', '--weight_decay', '0.', '--warmup_ratio', '0.0001', '--lr_scheduler_type', 'cosine', '--logging_steps', '10', '--model_max_length', '1280', '--gradient_checkpointing', 'True', '--lazy_preprocess', 'True', '--disable_tqdm', 'False'), 'state': 'running', 'program': '/home/rishabh/LLM_HHH/FastChat/fastchat/train/train_ft.py', 'codePath': 'fastchat/train/train_ft.py', 'host': 'workstation', 'username': 'rishabh', 'executable': '/home/rishabh/miniconda3/envs/LLM_HHH/bin/python', 'cpu_count': 24, 'cpu_count_logical': 48, 'cpu_freq': {'current': 2511.299, 'min': 2200.0, 'max': 3800.0}, 'cpu_freq_per_core': [{'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 3800.0, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 2233.943, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 3800.0, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 4198.281, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 4198.233, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 3800.0, 'min': 2200.0, 'max': 3800.0}, {'current': 3800.0, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 4198.913, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 3800.0, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}, {'current': 2200.0, 'min': 2200.0, 'max': 3800.0}], 'disk': {'total': 848.7079582214355, 'used': 681.2216529846191}, 'gpu': 'NVIDIA RTX A6000', 'gpu_count': 4, 'gpu_devices': [{'name': 'NVIDIA RTX A6000', 'memory_total': 48305799168}, {'name': 'NVIDIA RTX A6000', 'memory_total': 48305799168}, {'name': 'NVIDIA RTX A6000', 'memory_total': 48305799168}, {'name': 'NVIDIA RTX A6000', 'memory_total': 48305799168}], 'memory': {'total': 251.5547866821289}}
+2023-07-30 01:41:27,303 INFO    HandlerThread:2255077 [system_monitor.py:probe():211] Finished collecting system info
+2023-07-30 01:41:27,303 INFO    HandlerThread:2255077 [system_monitor.py:probe():214] Publishing system info
+2023-07-30 01:41:27,303 DEBUG   HandlerThread:2255077 [system_info.py:_save_pip():51] Saving list of pip packages installed into the current environment
+2023-07-30 01:41:27,303 DEBUG   HandlerThread:2255077 [system_info.py:_save_pip():67] Saving pip packages done
+2023-07-30 01:41:27,303 DEBUG   HandlerThread:2255077 [system_info.py:_save_conda():74] Saving list of conda packages installed into the current environment
+2023-07-30 01:41:28,150 INFO    Thread-12 :2255077 [dir_watcher.py:_on_file_created():272] file/dir created: /home/rishabh/LLM_HHH/FastChat/wandb/run-20230730_014126-72r0z9hu/files/requirements.txt
+2023-07-30 01:41:28,150 INFO    Thread-12 :2255077 [dir_watcher.py:_on_file_created():272] file/dir created: /home/rishabh/LLM_HHH/FastChat/wandb/run-20230730_014126-72r0z9hu/files/wandb-summary.json
+2023-07-30 01:41:28,150 INFO    Thread-12 :2255077 [dir_watcher.py:_on_file_created():272] file/dir created: /home/rishabh/LLM_HHH/FastChat/wandb/run-20230730_014126-72r0z9hu/files/conda-environment.yaml
+2023-07-30 01:41:29,257 DEBUG   HandlerThread:2255077 [system_info.py:_save_conda():86] Saving conda packages done
+2023-07-30 01:41:29,258 INFO    HandlerThread:2255077 [system_monitor.py:probe():216] Finished publishing system info
+2023-07-30 01:41:29,260 DEBUG   SenderThread:2255077 [sender.py:send():379] send: files
+2023-07-30 01:41:29,260 INFO    SenderThread:2255077 [sender.py:_save_file():1376] saving file wandb-metadata.json with policy now
+2023-07-30 01:41:29,270 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: stop_status
+2023-07-30 01:41:29,271 DEBUG   SenderThread:2255077 [sender.py:send_request():406] send_request: stop_status
+2023-07-30 01:41:29,637 DEBUG   SenderThread:2255077 [sender.py:send():379] send: telemetry
+2023-07-30 01:41:29,637 DEBUG   SenderThread:2255077 [sender.py:send():379] send: config
+2023-07-30 01:41:29,638 DEBUG   SenderThread:2255077 [sender.py:send():379] send: metric
+2023-07-30 01:41:29,638 DEBUG   SenderThread:2255077 [sender.py:send():379] send: telemetry
+2023-07-30 01:41:29,638 DEBUG   SenderThread:2255077 [sender.py:send():379] send: metric
+2023-07-30 01:41:29,638 WARNING SenderThread:2255077 [sender.py:send_metric():1327] Seen metric with glob (shouldn't happen)
+2023-07-30 01:41:29,962 INFO    wandb-upload_0:2255077 [upload_job.py:push():131] Uploaded file /tmp/tmpl4jdv3iwwandb/oknja9z7-wandb-metadata.json
+2023-07-30 01:41:30,149 INFO    Thread-12 :2255077 [dir_watcher.py:_on_file_modified():289] file/dir modified: /home/rishabh/LLM_HHH/FastChat/wandb/run-20230730_014126-72r0z9hu/files/conda-environment.yaml
+2023-07-30 01:41:30,150 INFO    Thread-12 :2255077 [dir_watcher.py:_on_file_created():272] file/dir created: /home/rishabh/LLM_HHH/FastChat/wandb/run-20230730_014126-72r0z9hu/files/wandb-metadata.json
+2023-07-30 01:41:30,150 INFO    Thread-12 :2255077 [dir_watcher.py:_on_file_created():272] file/dir created: /home/rishabh/LLM_HHH/FastChat/wandb/run-20230730_014126-72r0z9hu/files/output.log
+2023-07-30 01:41:31,641 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:41:32,150 INFO    Thread-12 :2255077 [dir_watcher.py:_on_file_modified():289] file/dir modified: /home/rishabh/LLM_HHH/FastChat/wandb/run-20230730_014126-72r0z9hu/files/output.log
+2023-07-30 01:41:36,641 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:41:41,642 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:41:44,368 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: stop_status
+2023-07-30 01:41:44,368 DEBUG   SenderThread:2255077 [sender.py:send_request():406] send_request: stop_status
+2023-07-30 01:41:47,621 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:41:52,622 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:41:57,626 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:41:58,157 INFO    Thread-12 :2255077 [dir_watcher.py:_on_file_modified():289] file/dir modified: /home/rishabh/LLM_HHH/FastChat/wandb/run-20230730_014126-72r0z9hu/files/config.yaml
+2023-07-30 01:41:59,367 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: stop_status
+2023-07-30 01:41:59,367 DEBUG   SenderThread:2255077 [sender.py:send_request():406] send_request: stop_status
+2023-07-30 01:42:03,631 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:42:08,632 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:42:13,634 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:42:14,367 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: stop_status
+2023-07-30 01:42:14,367 DEBUG   SenderThread:2255077 [sender.py:send_request():406] send_request: stop_status
+2023-07-30 01:42:18,665 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:42:22,167 INFO    Thread-12 :2255077 [dir_watcher.py:_on_file_modified():289] file/dir modified: /home/rishabh/LLM_HHH/FastChat/wandb/run-20230730_014126-72r0z9hu/files/output.log
+2023-07-30 01:42:24,609 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:42:27,252 DEBUG   SystemMonitor:2255077 [system_monitor.py:_start():159] Starting system metrics aggregation loop
+2023-07-30 01:42:27,255 DEBUG   SenderThread:2255077 [sender.py:send():379] send: stats
+2023-07-30 01:42:29,367 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: stop_status
+2023-07-30 01:42:29,368 DEBUG   SenderThread:2255077 [sender.py:send_request():406] send_request: stop_status
+2023-07-30 01:42:29,638 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:42:34,639 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:42:39,639 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:42:44,173 INFO    Thread-12 :2255077 [dir_watcher.py:_on_file_modified():289] file/dir modified: /home/rishabh/LLM_HHH/FastChat/wandb/run-20230730_014126-72r0z9hu/files/output.log
+2023-07-30 01:42:44,367 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: stop_status
+2023-07-30 01:42:44,368 DEBUG   SenderThread:2255077 [sender.py:send_request():406] send_request: stop_status
+2023-07-30 01:42:44,703 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:42:49,703 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:42:54,704 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:42:57,257 DEBUG   SenderThread:2255077 [sender.py:send():379] send: stats
+2023-07-30 01:42:59,367 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: stop_status
+2023-07-30 01:42:59,368 DEBUG   SenderThread:2255077 [sender.py:send_request():406] send_request: stop_status
+2023-07-30 01:43:00,703 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:43:05,706 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:43:10,183 INFO    Thread-12 :2255077 [dir_watcher.py:_on_file_modified():289] file/dir modified: /home/rishabh/LLM_HHH/FastChat/wandb/run-20230730_014126-72r0z9hu/files/output.log
+2023-07-30 01:43:10,965 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:43:14,368 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: stop_status
+2023-07-30 01:43:14,368 DEBUG   SenderThread:2255077 [sender.py:send_request():406] send_request: stop_status
+2023-07-30 01:43:16,645 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:43:21,645 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:43:26,646 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:43:27,258 DEBUG   SenderThread:2255077 [sender.py:send():379] send: stats
+2023-07-30 01:43:29,368 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: stop_status
+2023-07-30 01:43:29,368 DEBUG   SenderThread:2255077 [sender.py:send_request():406] send_request: stop_status
+2023-07-30 01:43:32,612 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:43:37,613 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:43:42,613 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:43:44,368 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: stop_status
+2023-07-30 01:43:44,368 DEBUG   SenderThread:2255077 [sender.py:send_request():406] send_request: stop_status
+2023-07-30 01:43:47,665 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:43:52,668 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:43:57,260 DEBUG   SenderThread:2255077 [sender.py:send():379] send: stats
+2023-07-30 01:43:58,202 INFO    Thread-12 :2255077 [dir_watcher.py:_on_file_modified():289] file/dir modified: /home/rishabh/LLM_HHH/FastChat/wandb/run-20230730_014126-72r0z9hu/files/output.log
+2023-07-30 01:43:58,261 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:43:59,368 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: stop_status
+2023-07-30 01:43:59,368 DEBUG   SenderThread:2255077 [sender.py:send_request():406] send_request: stop_status
+2023-07-30 01:44:03,711 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:44:08,712 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:44:13,713 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:44:14,368 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: stop_status
+2023-07-30 01:44:14,368 DEBUG   SenderThread:2255077 [sender.py:send_request():406] send_request: stop_status
+2023-07-30 01:44:19,688 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:44:24,689 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:44:27,262 DEBUG   SenderThread:2255077 [sender.py:send():379] send: stats
+2023-07-30 01:44:29,368 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: stop_status
+2023-07-30 01:44:29,369 DEBUG   SenderThread:2255077 [sender.py:send_request():406] send_request: stop_status
+2023-07-30 01:44:30,622 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:44:35,622 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:44:40,626 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:44:44,840 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: stop_status
+2023-07-30 01:44:44,840 DEBUG   SenderThread:2255077 [sender.py:send_request():406] send_request: stop_status
+2023-07-30 01:44:46,153 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:44:46,219 INFO    Thread-12 :2255077 [dir_watcher.py:_on_file_modified():289] file/dir modified: /home/rishabh/LLM_HHH/FastChat/wandb/run-20230730_014126-72r0z9hu/files/output.log
+2023-07-30 01:44:51,154 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:44:56,155 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:44:57,263 DEBUG   SenderThread:2255077 [sender.py:send():379] send: stats
+2023-07-30 01:45:00,048 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: stop_status
+2023-07-30 01:45:00,049 DEBUG   SenderThread:2255077 [sender.py:send_request():406] send_request: stop_status
+2023-07-30 01:45:01,379 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:45:06,380 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report
+2023-07-30 01:45:11,380 DEBUG   HandlerThread:2255077 [handler.py:handle_request():144] handle_request: status_report

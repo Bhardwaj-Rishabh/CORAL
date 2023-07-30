@@ -1,0 +1,189 @@
+
+  0%|                                                                                                                                                                     | 0/954 [00:00<?, ?it/s]Traceback (most recent call last):
+  File "/home/rishabh/LLM_HHH/FastChat/fastchat/train/train_ft.py", line 116, in <module>
+    train()
+  File "/home/rishabh/LLM_HHH/FastChat/fastchat/train/train_ft.py", line 106, in train
+    trainer.train(resume_from_checkpoint=True)
+  File "/home/rishabh/miniconda3/envs/LLM_HHH/lib/python3.11/site-packages/transformers/trainer.py", line 1664, in train
+    return inner_training_loop(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/rishabh/miniconda3/envs/LLM_HHH/lib/python3.11/site-packages/transformers/trainer.py", line 1940, in _inner_training_loop
+    tr_loss_step = self.training_step(model, inputs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rishabh/miniconda3/envs/LLM_HHH/lib/python3.11/site-packages/transformers/trainer.py", line 2751, in training_step
+    loss = self.deepspeed.backward(loss)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rishabh/miniconda3/envs/LLM_HHH/lib/python3.11/site-packages/deepspeed/utils/nvtx.py", line 15, in wrapped_fn
+    ret_val = func(*args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rishabh/miniconda3/envs/LLM_HHH/lib/python3.11/site-packages/deepspeed/runtime/engine.py", line 1895, in backward
+    self.optimizer.backward(loss, retain_graph=retain_graph)
+  File "/home/rishabh/miniconda3/envs/LLM_HHH/lib/python3.11/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 1902, in backward
+    self.loss_scaler.backward(loss.float(), retain_graph=retain_graph)
+  File "/home/rishabh/miniconda3/envs/LLM_HHH/lib/python3.11/site-packages/deepspeed/runtime/fp16/loss_scaler.py", line 63, in backward
+    scaled_loss.backward(retain_graph=retain_graph)
+  File "/home/rishabh/miniconda3/envs/LLM_HHH/lib/python3.11/site-packages/torch/_tensor.py", line 487, in backward
+    torch.autograd.backward(
+  File "/home/rishabh/miniconda3/envs/LLM_HHH/lib/python3.11/site-packages/torch/autograd/__init__.py", line 200, in backward
+    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+  File "/home/rishabh/miniconda3/envs/LLM_HHH/lib/python3.11/site-packages/torch/autograd/function.py", line 274, in apply
+    return user_fn(self, *args)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/rishabh/miniconda3/envs/LLM_HHH/lib/python3.11/site-packages/torch/utils/checkpoint.py", line 157, in backward
+    torch.autograd.backward(outputs_with_grad, args_with_grad)
+  File "/home/rishabh/miniconda3/envs/LLM_HHH/lib/python3.11/site-packages/torch/autograd/__init__.py", line 200, in backward
+    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 800.00 MiB (GPU 0; 44.56 GiB total capacity; 22.43 GiB already allocated; 733.44 MiB free; 24.15 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+[31m╭─────────────────────────────── [39m[1mTraceback (most recent call last)[31m[22m ────────────────────────────────╮
+[31m│[39m /home/rishabh/LLM_HHH/FastChat/fastchat/train/[1mtrain_ft.py[22m:[94m116[39m in [92m<module>[39m                        [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m   113                                                                                            [31m│
+[31m│[39m   114 [94mif[39m [91m__name__[39m == [33m"__main__"[39m:                                                                 [31m│
+[31m│[39m   115 │   [94mwith[39m torch.autocast([33m"cuda"[39m):                                                           [31m│
+[31m│[39m [31m❱ [39m116 │   │   train()                                                                            [31m│
+[31m│[39m   117                                                                                            [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m /home/rishabh/LLM_HHH/FastChat/fastchat/train/[1mtrain_ft.py[22m:[94m106[39m in [92mtrain[39m                           [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m   103 │                                                                                          [31m│
+[31m│[39m   104 │   #print(f"\n\n Device Map: {model.hf_device_map}")                                      [31m│
+[31m│[39m   105 │   [94mif[39m [96mlist[39m(pathlib.Path(training_args.output_dir).glob([33m"checkpoint-*"[39m)):                  [31m│
+[31m│[39m [31m❱ [39m106 │   │   trainer.train(resume_from_checkpoint=[94mTrue[39m)                                         [31m│
+[31m│[39m   107 │   [94melse[39m:                                                                                  [31m│
+[31m│[39m   108 │   │   trainer.train()                                                                    [31m│
+[31m│[39m   109                                                                                            [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m /home/rishabh/miniconda3/envs/LLM_HHH/lib/python3.11/site-packages/transformers/[1mtrainer.py[22m:[94m1664[39m  [31m│
+[31m│[39m in [92mtrain[39m                                                                                         [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m   1661 │   │   inner_training_loop = find_executable_batch_size(                                 [31m│
+[31m│[39m   1662 │   │   │   [96mself[39m._inner_training_loop, [96mself[39m._train_batch_size, args.auto_find_batch_size  [31m│
+[31m│[39m   1663 │   │   )                                                                                 [31m│
+[31m│[39m [31m❱ [39m1664 │   │   [94mreturn[39m inner_training_loop(                                                       [31m│
+[31m│[39m   1665 │   │   │   args=args,                                                                    [31m│
+[31m│[39m   1666 │   │   │   resume_from_checkpoint=resume_from_checkpoint,                                [31m│
+[31m│[39m   1667 │   │   │   trial=trial,                                                                  [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m /home/rishabh/miniconda3/envs/LLM_HHH/lib/python3.11/site-packages/transformers/[1mtrainer.py[22m:[94m1940[39m  [31m│
+[31m│[39m in [92m_inner_training_loop[39m                                                                          [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m   1937 │   │   │   │   │   [94mwith[39m model.no_sync():                                                 [31m│
+[31m│[39m   1938 │   │   │   │   │   │   tr_loss_step = [96mself[39m.training_step(model, inputs)                  [31m│
+[31m│[39m   1939 │   │   │   │   [94melse[39m:                                                                     [31m│
+[31m│[39m [31m❱ [39m1940 │   │   │   │   │   tr_loss_step = [96mself[39m.training_step(model, inputs)                      [31m│
+[31m│[39m   1941 │   │   │   │                                                                             [31m│
+[31m│[39m   1942 │   │   │   │   [94mif[39m (                                                                      [31m│
+[31m│[39m   1943 │   │   │   │   │   args.logging_nan_inf_filter                                           [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m /home/rishabh/miniconda3/envs/LLM_HHH/lib/python3.11/site-packages/transformers/[1mtrainer.py[22m:[94m2751[39m  [31m│
+[31m│[39m in [92mtraining_step[39m                                                                                 [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m   2748 │   │   │   │   scaled_loss.backward()                                                    [31m│
+[31m│[39m   2749 │   │   [94melif[39m [96mself[39m.deepspeed:                                                              [31m│
+[31m│[39m   2750 │   │   │   # loss gets scaled under gradient_accumulation_steps in deepspeed             [31m│
+[31m│[39m [31m❱ [39m2751 │   │   │   loss = [96mself[39m.deepspeed.backward(loss)                                          [31m│
+[31m│[39m   2752 │   │   [94melse[39m:                                                                             [31m│
+[31m│[39m   2753 │   │   │   loss.backward()                                                               [31m│
+[31m│[39m   2754                                                                                           [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m /home/rishabh/miniconda3/envs/LLM_HHH/lib/python3.11/site-packages/deepspeed/utils/[1mnvtx.py[22m:[94m15[39m in [31m│
+[31m│[39m [92mwrapped_fn[39m                                                                                       [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m   12 │                                                                                           [31m│
+[31m│[39m   13 │   [94mdef[39m [92mwrapped_fn[39m(*args, **kwargs):                                                        [31m│
+[31m│[39m   14 │   │   get_accelerator().range_push(func.[91m__qualname__[39m)                                     [31m│
+[31m│[39m [31m❱ [39m15 │   │   ret_val = func(*args, **kwargs)                                                     [31m│
+[31m│[39m   16 │   │   get_accelerator().range_pop()                                                       [31m│
+[31m│[39m   17 │   │   [94mreturn[39m ret_val                                                                      [31m│
+[31m│[39m   18                                                                                             [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m /home/rishabh/miniconda3/envs/LLM_HHH/lib/python3.11/site-packages/deepspeed/runtime/[1mengine.py[22m:[94m1[39m [31m│
+[31m│[39m [94m895[39m in [92mbackward[39m                                                                                  [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m   1892 │   │                                                                                     [31m│
+[31m│[39m   1893 │   │   [94mif[39m [96mself[39m.zero_optimization():                                                      [31m│
+[31m│[39m   1894 │   │   │   [96mself[39m.optimizer.is_gradient_accumulation_boundary = [96mself[39m.is_gradient_accumula  [31m│
+[31m│[39m [31m❱ [39m1895 │   │   │   [96mself[39m.optimizer.backward(loss, retain_graph=retain_graph)                      [31m│
+[31m│[39m   1896 │   │   [94melif[39m [96mself[39m.amp_enabled():                                                          [31m│
+[31m│[39m   1897 │   │   │   # AMP requires delaying unscale when inside gradient accumulation boundaries  [31m│
+[31m│[39m   1898 │   │   │   # https://nvidia.github.io/apex/advanced.html#gradient-accumulation-across-i  [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m /home/rishabh/miniconda3/envs/LLM_HHH/lib/python3.11/site-packages/deepspeed/runtime/zero/[1mstage_[22m [31m│
+[31m│[39m [1m1_and_2.py[22m:[94m1902[39m in [92mbackward[39m                                                                      [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m   1899 │   │   │   scaled_loss = [96mself[39m.external_loss_scale * loss                                 [31m│
+[31m│[39m   1900 │   │   │   scaled_loss.backward()                                                        [31m│
+[31m│[39m   1901 │   │   [94melse[39m:                                                                             [31m│
+[31m│[39m [31m❱ [39m1902 │   │   │   [96mself[39m.loss_scaler.backward(loss.float(), retain_graph=retain_graph)            [31m│
+[31m│[39m   1903 │                                                                                         [31m│
+[31m│[39m   1904 │   [94mdef[39m [92mcheck_overflow[39m([96mself[39m, partition_gradients=[94mTrue[39m):                                   [31m│
+[31m│[39m   1905 │   │   [96mself[39m._check_overflow(partition_gradients)                                         [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m /home/rishabh/miniconda3/envs/LLM_HHH/lib/python3.11/site-packages/deepspeed/runtime/fp16/[1mloss_s[22m [31m│
+[31m│[39m [1mcaler.py[22m:[94m63[39m in [92mbackward[39m                                                                          [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m    60 │                                                                                          [31m│
+[31m│[39m    61 │   [94mdef[39m [92mbackward[39m([96mself[39m, loss, retain_graph=[94mFalse[39m):                                          [31m│
+[31m│[39m    62 │   │   scaled_loss = loss * [96mself[39m.loss_scale                                               [31m│
+[31m│[39m [31m❱ [39m 63 │   │   scaled_loss.backward(retain_graph=retain_graph)                                    [31m│
+[31m│[39m    64 │   │   # print(f'LossScalerBackward: {scaled_loss=}')                                     [31m│
+[31m│[39m    65                                                                                            [31m│
+[31m│[39m    66                                                                                            [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m /home/rishabh/miniconda3/envs/LLM_HHH/lib/python3.11/site-packages/torch/[1m_tensor.py[22m:[94m487[39m in       [31m│
+[31m│[39m [92mbackward[39m                                                                                         [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m    484 │   │   │   │   create_graph=create_graph,                                                [31m│
+[31m│[39m    485 │   │   │   │   inputs=inputs,                                                            [31m│
+[31m│[39m    486 │   │   │   )                                                                             [31m│
+[31m│[39m [31m❱ [39m 487 │   │   torch.autograd.backward(                                                          [31m│
+[31m│[39m    488 │   │   │   [96mself[39m, gradient, retain_graph, create_graph, inputs=inputs                     [31m│
+[31m│[39m    489 │   │   )                                                                                 [31m│
+[31m│[39m    490                                                                                           [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m /home/rishabh/miniconda3/envs/LLM_HHH/lib/python3.11/site-packages/torch/autograd/[1m__init__.py[22m:[94m20[39m [31m│
+[31m│[39m [94m0[39m in [92mbackward[39m                                                                                    [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m   197 │   # The reason we repeat same the comment below is that                                  [31m│
+[31m│[39m   198 │   # some Python versions print out the first line of a multi-line function               [31m│
+[31m│[39m   199 │   # calls in the traceback and some print out the last line                              [31m│
+[31m│[39m [31m❱ [39m200 │   Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the bac   [31m│
+[31m│[39m   201 │   │   tensors, grad_tensors_, retain_graph, create_graph, inputs,                        [31m│
+[31m│[39m   202 │   │   allow_unreachable=[94mTrue[39m, accumulate_grad=[94mTrue[39m)  # Calls into the C++ engine to ru   [31m│
+[31m│[39m   203                                                                                            [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m /home/rishabh/miniconda3/envs/LLM_HHH/lib/python3.11/site-packages/torch/autograd/[1mfunction.py[22m:[94m27[39m [31m│
+[31m│[39m [94m4[39m in [92mapply[39m                                                                                       [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m   271 │   │   │   │   │   │   │      [33m"Function is not allowed. You should only implement one "[39m   [31m│
+[31m│[39m   272 │   │   │   │   │   │   │      [33m"of them."[39m)                                                 [31m│
+[31m│[39m   273 │   │   user_fn = vjp_fn [94mif[39m vjp_fn [95mis[39m [95mnot[39m Function.vjp [94melse[39m backward_fn                    [31m│
+[31m│[39m [31m❱ [39m274 │   │   [94mreturn[39m user_fn([96mself[39m, *args)                                                        [31m│
+[31m│[39m   275 │                                                                                          [31m│
+[31m│[39m   276 │   [94mdef[39m [92mapply_jvp[39m([96mself[39m, *args):                                                            [31m│
+[31m│[39m   277 │   │   # _forward_cls is defined by derived class                                         [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m /home/rishabh/miniconda3/envs/LLM_HHH/lib/python3.11/site-packages/torch/utils/[1mcheckpoint.py[22m:[94m157[39m [31m│
+[31m│[39m in [92mbackward[39m                                                                                      [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m   154 │   │   │   [94mraise[39m [96mRuntimeError[39m(                                                            [31m│
+[31m│[39m   155 │   │   │   │   [33m"none of output has requires_grad=True,"[39m                                   [31m│
+[31m│[39m   156 │   │   │   │   [33m" this checkpoint() is not necessary"[39m)                                     [31m│
+[31m│[39m [31m❱ [39m157 │   │   torch.autograd.backward(outputs_with_grad, args_with_grad)                         [31m│
+[31m│[39m   158 │   │   grads = [96mtuple[39m(inp.grad [94mif[39m [96misinstance[39m(inp, torch.Tensor) [94melse[39m [94mNone[39m                  [31m│
+[31m│[39m   159 │   │   │   │   │     [94mfor[39m inp [95min[39m detached_inputs)                                          [31m│
+[31m│[39m   160                                                                                            [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m /home/rishabh/miniconda3/envs/LLM_HHH/lib/python3.11/site-packages/torch/autograd/[1m__init__.py[22m:[94m20[39m [31m│
+[31m│[39m [94m0[39m in [92mbackward[39m                                                                                    [31m│
+[31m│[39m                                                                                                  [31m│
+[31m│[39m   197 │   # The reason we repeat same the comment below is that                                  [31m│
+[31m│[39m   198 │   # some Python versions print out the first line of a multi-line function               [31m│
+[31m│[39m   199 │   # calls in the traceback and some print out the last line                              [31m│
+[31m│[39m [31m❱ [39m200 │   Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the bac   [31m│
+[31m│[39m   201 │   │   tensors, grad_tensors_, retain_graph, create_graph, inputs,                        [31m│
+[31m│[39m   202 │   │   allow_unreachable=[94mTrue[39m, accumulate_grad=[94mTrue[39m)  # Calls into the C++ engine to ru   [31m│
+[31m│[39m   203                                                                                            [31m│
+[31m╰──────────────────────────────────────────────────────────────────────────────────────────────────╯
+[1mOutOfMemoryError: [22mCUDA out of memory. Tried to allocate [1m800.00[22m MiB [1m([22mGPU [1m0[22m; [1m44.56[22m GiB total capacity; [1m22.43[22m GiB already allocated; [1m733.44[22m MiB free; [1m24.15[22m GiB reserved in total by PyTorch[1m)[22m If
+reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF

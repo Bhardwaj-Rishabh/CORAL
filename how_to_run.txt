@@ -1,0 +1,200 @@
+evaluate:
+tqa:
+cd ~/LLM_HHH/evaluate
+conda activate LLM_HHH
+
+CUDA_VISIBLE_DEVICES=0 python hhh_sj.py main --model_name llama --model_path lmsys/vicuna-7b-v1.3 --load_8bit
+CUDA_VISIBLE_DEVICES=1 python hhh_sj.py main --model_name llama --model_path /data/rishabh/flacuna/checkpoint-400 --load_8bit
+CUDA_VISIBLE_DEVICES=2 python hhh_sj.py main --model_name llama --model_path /data/rishabh/flacuna/checkpoint-700 --load_8bit
+CUDA_VISIBLE_DEVICES=3 python hhh_sj.py main --model_name llama --model_path /data/rishabh/flacuna/checkpoint-800 --load_8bit
+
+
+CUDA_VISIBLE_DEVICES=0 python main.py truthfulqa_mc --model_name llama --model_path /data/rishabh/flacuna/checkpoint-100 --load_8bit
+CUDA_VISIBLE_DEVICES=1 python main.py truthfulqa_mc --model_name llama --model_path /data/rishabh/flacuna/checkpoint-200 --load_8bit
+CUDA_VISIBLE_DEVICES=1 python main.py truthfulqa_mc --model_name llama --model_path /data/rishabh/flacuna/checkpoint-300 --load_8bit
+CUDA_VISIBLE_DEVICES=2 python main.py truthfulqa_mc --model_name llama --model_path /data/rishabh/flacuna/checkpoint-400 --load_8bit
+CUDA_VISIBLE_DEVICES=3 python main.py truthfulqa_mc --model_name llama --model_path /data/rishabh/flacuna/checkpoint-500 --load_8bit
+
+mmlu: CUDA_VISIBLE_DEVICES=0 python main.py mmlu --model_name llama --model_path /mnt/data_4tb/rishabh/flacuna/checkpoint-500 --load_8bit
+
+
+#---7b for lora-fiene-tuning----
+CUDA_VISIBLE_DEVICES=0,1,2,3 deepspeed --num_gpus=4 fastchat/train/train_lora.py \
+    --ddp_timeout=360000 \
+    --output_dir "saved/flacuna/" \
+    --deepspeed "deepspeed_configs/bf16.json" --bf16 True \
+    --lora_r 8 --lora_alpha 16 --lora_dropout 0.05 \
+    --model_name_or_path "lmsys/vicuna-7b-v1.3" \
+    --data_path "data/data_hall_finetune.json" \
+    --per_device_train_batch_size 4 --per_device_eval_batch_size 4 --gradient_accumulation_steps 8 \
+    --num_train_epochs 1 --evaluation_strategy "epoch" \
+    --save_strategy "steps" --save_steps 50 --save_total_limit 20 \
+    --learning_rate 2e-5 --weight_decay 0. --warmup_ratio 0.0001 --lr_scheduler_type "cosine" --logging_steps 10 \
+    --model_max_length 1280 \
+    --gradient_checkpointing True --lazy_preprocess True --disable_tqdm False
+
+
+#---(setup4)---7b for lora-fiene-tuning----
+(train on h1-pos-neg)
+CUDA_VISIBLE_DEVICES=0,1,2,3 deepspeed --num_gpus=4 fastchat/train/train_ft_pos_neg_setup4.py \
+    --ddp_timeout=360000 \
+    --output_dir "/data/rishabh/flacuna/" \
+    --deepspeed "deepspeed_configs/fp16_ft_7b.json" --fp16 True \
+    --model_name_or_path "lmsys/vicuna-7b-v1.3" \
+    --data_path_pos "data/data_h1_finetune.json" \
+    --data_path_neg "data/data_lh1_finetune.json" \
+    --per_device_train_batch_size 4 --per_device_eval_batch_size 4 --gradient_accumulation_steps 8 \
+    --num_train_epochs 3 --evaluation_strategy "steps" --eval_steps 20\
+    --save_strategy "steps" --save_steps 100 --save_total_limit 20 \
+    --learning_rate 2e-5 --weight_decay 0. --warmup_ratio 0.0001 --lr_scheduler_type "cosine" --logging_steps 10 \
+    --model_max_length 1280 \
+    --gradient_checkpointing True --lazy_preprocess True --disable_tqdm False
+
+(train above on h1,h2,sharegpt-pos)
+CUDA_VISIBLE_DEVICES=0,1,2,3 deepspeed --num_gpus=4 fastchat/train/train_ft.py \
+    --ddp_timeout=360000 \
+    --output_dir "/data/rishabh/flacuna/" \
+    --deepspeed "deepspeed_configs/fp16_ft_7b.json" --fp16 True \
+    --model_name_or_path "/data/rishabh/flacuna/pos_neg_v4_checkpoint-200" \
+    --data_path "data/data_hall_sgpt_combined.json" \
+    --per_device_train_batch_size 4 --per_device_eval_batch_size 4 --gradient_accumulation_steps 8 \
+    --num_train_epochs 3 --evaluation_strategy "steps" --eval_steps 20\
+    --save_strategy "steps" --save_steps 100 --save_total_limit 20 \
+    --learning_rate 2e-5 --weight_decay 0. --warmup_ratio 0.0001 --lr_scheduler_type "cosine" --logging_steps 10 \
+    --model_max_length 1280 \
+    --gradient_checkpointing True --lazy_preprocess True --disable_tqdm False
+
+(different lr=2e-6)
+CUDA_VISIBLE_DEVICES=0,1,2,3 deepspeed --num_gpus=4 fastchat/train/train_ft.py \
+    --ddp_timeout=360000 \
+    --output_dir "/data/rishabh/flacuna/" \
+    --deepspeed "deepspeed_configs/fp16_ft_7b.json" --fp16 True \
+    --model_name_or_path "/data/rishabh/flacuna/pos_neg_v4_checkpoint-200" \
+    --data_path "data/data_hall_sgpt_combined.json" \
+    --per_device_train_batch_size 4 --per_device_eval_batch_size 4 --gradient_accumulation_steps 8 \
+    --num_train_epochs 3 --evaluation_strategy "steps" --eval_steps 20\
+    --save_strategy "steps" --save_steps 100 --save_total_limit 20 \
+    --learning_rate 2e-6 --weight_decay 0. --warmup_ratio 0.0001 --lr_scheduler_type "cosine" --logging_steps 10 \
+    --model_max_length 1280 \
+    --gradient_checkpointing True --lazy_preprocess True --disable_tqdm False
+
+(different lr=1e-5)
+CUDA_VISIBLE_DEVICES=0,1,2,3 deepspeed --num_gpus=4 fastchat/train/train_ft.py \
+    --ddp_timeout=360000 \
+    --output_dir "/data/rishabh/flacuna/" \
+    --deepspeed "deepspeed_configs/fp16_ft_7b.json" --fp16 True \
+    --model_name_or_path "/data/rishabh/flacuna/pos_neg_v4_checkpoint-200" \
+    --data_path "data/data_hall_sgpt_combined.json" \
+    --per_device_train_batch_size 4 --per_device_eval_batch_size 4 --gradient_accumulation_steps 8 \
+    --num_train_epochs 3 --evaluation_strategy "steps" --eval_steps 20\
+    --save_strategy "steps" --save_steps 200 --save_total_limit 20 \
+    --learning_rate 1e-5 --weight_decay 0. --warmup_ratio 0.0001 --lr_scheduler_type "cosine" --logging_steps 10 \
+    --model_max_length 1280 \
+    --gradient_checkpointing True --lazy_preprocess True --disable_tqdm False
+
+#----older runs------
+#7b for full-fine-tuning
+CUDA_VISIBLE_DEVICES=0,1,2,3 deepspeed --num_gpus=4 fastchat/train/train_ft.py \
+    --ddp_timeout=360000 \
+    --output_dir "/mnt/data_4tb/rishabh/flacuna/" \
+    --deepspeed "deepspeed_configs/bf16_ft_7b.json" --bf16 True \
+    --model_name_or_path "lmsys/vicuna-7b-v1.3" \
+    --data_path "data/data_hall_complete_sgpt_combined.json" \
+    --per_device_train_batch_size 4 --per_device_eval_batch_size 4 --gradient_accumulation_steps 8 \
+    --num_train_epochs 3 --evaluation_strategy "epoch" \
+    --save_strategy "steps" --save_steps 50 --save_total_limit 20 \
+    --learning_rate 2e-5 --weight_decay 0. --warmup_ratio 0.0001 --lr_scheduler_type "cosine" --logging_steps 10 \
+    --model_max_length 1280 \
+    --gradient_checkpointing True --lazy_preprocess True --disable_tqdm False
+
+
+#7b (fp16) for full-fine-tuning
+CUDA_VISIBLE_DEVICES=0,1,2,3 deepspeed --num_gpus=4 fastchat/train/train_ft.py \
+    --ddp_timeout=360000 \
+    --output_dir "/mnt/data_4tb/rishabh/flacuna/" \
+    --deepspeed "deepspeed_configs/fp16_ft_7b.json" --fp16 True \
+    --model_name_or_path "lmsys/vicuna-7b-v1.3" \
+    --data_path "data/data_hall_sgpt.json" \
+    --per_device_train_batch_size 4 --per_device_eval_batch_size 4 --gradient_accumulation_steps 8 \
+    --num_train_epochs 3 --evaluation_strategy "steps" --eval_steps 50\
+    --save_strategy "steps" --save_steps 50 --save_total_limit 20 \
+    --learning_rate 2e-5 --weight_decay 0. --warmup_ratio 0.0001 --lr_scheduler_type "cosine" --logging_steps 10 \
+    --model_max_length 1280 \
+    --gradient_checkpointing True --lazy_preprocess True --disable_tqdm False
+
+#7b (fp16, small sharegpt text) for full-fine-tuning
+CUDA_VISIBLE_DEVICES=0,1,2,3 deepspeed --num_gpus=4 fastchat/train/train_ft.py \
+    --ddp_timeout=360000 \
+    --output_dir "/mnt/data_4tb/rishabh/flacuna/" \
+    --deepspeed "deepspeed_configs/fp16_ft_7b.json" --fp16 True \
+    --model_name_or_path "lmsys/vicuna-7b-v1.3" \
+    --data_path "data/data_hall_sgpt_combined.json" \
+    --per_device_train_batch_size 4 --per_device_eval_batch_size 4 --gradient_accumulation_steps 8 \
+    --num_train_epochs 3 --evaluation_strategy "steps" --eval_steps 50\
+    --save_strategy "steps" --save_steps 50 --save_total_limit 20 \
+    --learning_rate 2e-5 --weight_decay 0. --warmup_ratio 0.0001 --lr_scheduler_type "cosine" --logging_steps 10 \
+    --model_max_length 1280 \
+    --gradient_checkpointing True --lazy_preprocess True --disable_tqdm False
+
+#(contrastive: pos + neg collected + nut-from sharegpt) 
+#7b (fp16) for full-fine-tuning
+CUDA_VISIBLE_DEVICES=0,1,2,3 deepspeed --num_gpus=4 fastchat/train/train_ft_pos_neg_setup3.py \
+    --ddp_timeout=360000 \
+    --output_dir "/data/rishabh/flacuna/" \
+    --deepspeed "deepspeed_configs/fp16_ft_7b.json" --fp16 True \
+    --model_name_or_path "lmsys/vicuna-7b-v1.3" \
+    --data_path_pos "data/data_hall_finetune.json" \
+    --data_path_neg "data/data_lhall_finetune.json" \
+    --data_path_nut "data/sgpt_20K.json" \
+    --per_device_train_batch_size 4 --per_device_eval_batch_size 4 --gradient_accumulation_steps 8 \
+    --num_train_epochs 3 --evaluation_strategy "steps" --eval_steps 20\
+    --save_strategy "steps" --save_steps 100 --save_total_limit 20 \
+    --learning_rate 2e-5 --weight_decay 0. --warmup_ratio 0.0001 --lr_scheduler_type "cosine" --logging_steps 10 \
+    --model_max_length 1280 \
+    --gradient_checkpointing True --lazy_preprocess True --disable_tqdm False
+
+#(contrastive: pos + neg for 100 steps, use that checkpoint as model name to run on pos only data) 
+#7b (fp16) for full-fine-tuning
+CUDA_VISIBLE_DEVICES=0,1,2,3 deepspeed --num_gpus=4 fastchat/train/train_ft.py \
+    --ddp_timeout=360000 \
+    --output_dir "/mnt/data_4tb/rishabh/flacuna/" \
+    --deepspeed "deepspeed_configs/fp16_ft_7b.json" --fp16 True \
+    --model_name_or_path "/mnt/data_4tb/rishabh/flacuna/pos_neg_checkpoint-100" \
+    --data_path "data/data_hall_sgpt.json" \
+    --per_device_train_batch_size 4 --per_device_eval_batch_size 4 --gradient_accumulation_steps 8 \
+    --num_train_epochs 3 --evaluation_strategy "steps" --eval_steps 50\
+    --save_strategy "steps" --save_steps 100 --save_total_limit 20 \
+    --learning_rate 2e-5 --weight_decay 0. --warmup_ratio 0.0001 --lr_scheduler_type "cosine" --logging_steps 10 \
+    --model_max_length 1280 \
+    --gradient_checkpointing True --lazy_preprocess True --disable_tqdm False
+
+#13b for full-fine-tuning
+CUDA_VISIBLE_DEVICES=0,1,2,3 deepspeed --num_gpus=4 fastchat/train/train_ft.py \
+    --ddp_timeout=360000 \
+    --output_dir "/mnt/data_4tb/rishabh/flacuna/" \
+    --deepspeed "deepspeed_configs/bf16_ft_7b.json" --bf16 True \
+    --model_name_or_path "lmsys/vicuna-13b-v1.3" \
+    --data_path "data/data_hall_sgpt.json" \
+    --per_device_train_batch_size 2 --per_device_eval_batch_size 4 --gradient_accumulation_steps 8 \
+    --num_train_epochs 1 --evaluation_strategy "epoch" \
+    --save_strategy "steps" --save_steps 50 --save_total_limit 20 \
+    --learning_rate 2e-5 --weight_decay 0. --warmup_ratio 0.0001 --lr_scheduler_type "cosine" --logging_steps 10 \
+    --model_max_length 128 \
+    --gradient_checkpointing True --lazy_preprocess True --disable_tqdm False
+
+
+#---merge delta weights----
+python merger.py --adapter_model_name=saved/flacuna --base_model_name=lmsys/vicuna-7b-v1.3 --output_name=saved/merged
+
+
+#---for evaluation-----
+cd ~/LLM_HHH/fine_tuning_code/evaluate
+python hhh.py main --model_name llama --model_path lmsys/vicuna-7b-v1.3
+and
+python hhh.py main --model_name llama --model_path /mnt/data_4tb/rishabh/flacuna/
+
+python main.py truthfulqa_mc --model_name llama --model_path ../FastChat/saved/merged/
+python main.py truthfulqa_mc --model_name llama --model_path lmsys/vicuna-7b-v1.3
+
+#---run cli----
+python3 -m fastchat.serve.cli --model-path ../FastChat/saved/flacuna/checkpoint-50/
